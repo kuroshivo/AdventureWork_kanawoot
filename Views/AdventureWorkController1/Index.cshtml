@@ -1,0 +1,102 @@
+﻿
+@model MyAdventureWork.Models.ActivityWorkList
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+
+        <!-- Info -->
+        <div class="col-md-5">
+
+            <div class="col-md-12">
+                <h3>Type in activity name</h3>
+            </div>
+            <div class="col-md-12">
+                <div class="container">
+                    <!-- Trigger the modal with a button -->
+                    <input id="txtSearch" type="text" class="text-left" onkeyup="fnSearch()" name="txtSearch" placeholder="Search" maxlength="100">
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info btn-sm" onclick="fnShowModalActivityNew()">New Activity</button>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding-top:10px !important;">
+                <h3>Adventure list</h3>
+            </div>
+            <div class="col-md-12" style="padding-top:10px !important;">
+                @*Adventure list*@
+                <div id="resultActivityList">
+                    <table id="tbAdventureList" class="table table-hover">
+                        <tbody>
+                        </tbody>
+                    </table> 
+                </div> 
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col-md-7"> 
+            <div id="map" style="height:500px;"></div>
+
+            <script src="https://api.longdo.com/map/?key=d7a68aedc89f8a2c1815fb8b38fc72d4"></script>
+            @*<link rel="stylesheet" href="./MarkerCluster.Default.css">*@
+            <link href="~/css/MarkerCluster.Default.css" rel="stylesheet" />
+            <script src="~/js/longdomap.markercluster-src.js"></script>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalActivity" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Adventure</h4> 
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                <span style="color:red">*</span> Activity :
+                            </div>
+                            <div class="col-md-10">
+                                <div>
+                                    <input id="hidKeyIndentity" type="hidden" class="text-left" />
+                                    <input id="hidLat" type="hidden" class="text-left" />
+                                    <input id="hidLng" type="hidden" class="text-left" />
+                                    <input id="txtActivityName" type="text" class="text-left" placeholder="Activity Name" style="width:100%;" maxlength="250">
+                                </div>
+
+                                <div id="searchPlace"  style="padding-top: 10px !important;">
+                                    Search place : <input id="search" placeholder="Key and enter" />
+                                    <div id="result"></div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <span style="color:red">*</span> Date :
+                            </div>
+                            <div class="col-md-10">
+                                <input id="txtDate" type="text" class="text-left" placeholder="Date" maxlength="10">
+                            </div>
+                            <div class="col-md-2 text-right" style="padding-top: 10px !important;">
+                                Place : 
+                            </div>
+                            <div class="col-md-10" style="padding-top: 10px !important;">
+                                <input id="txtPlace" type="text" multiple class="text-left" placeholder="Place" style="width:100%" maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnAddNew" type="button" class="btn btn-default" onclick="fnSaveActivity('A')">Save</button>
+                        <button id="btnEdit" type="button" class="btn btn-default" onclick="fnSaveActivity('E')">Edit</button>
+                        <button id="btnDelete" type="button" class="btn btn-default" onclick="fnSaveActivity('D')">Delete</button>
+                        <button id="btnClosed" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
